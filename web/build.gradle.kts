@@ -1,28 +1,24 @@
-import org.jetbrains.compose.compose
-
 plugins {
-	id("multiplatform-setup")
+	kotlin("multiplatform")
 	id("org.jetbrains.compose")
 }
 
+version = "1.0-SNAPSHOT"
+
 kotlin {
+
+	js(IR) {
+		browser()
+		binaries.executable()
+	}
 
 	sourceSets {
 		val jsMain by getting {
 			dependencies {
+				implementation(kotlin("stdlib-js"))
 				implementation(compose.web.core)
 				implementation(compose.runtime)
 				implementation(project(":shared"))
-
-//				implementation(Deps.Ktor.Client.core)
-//				implementation(Deps.Ktor.Client.js)
-//				implementation(Deps.Ktor.Client.contentNegotiation)
-//				implementation(Deps.Ktor.serializationJson)
-			}
-		}
-		val jsTest by getting {
-			dependencies {
-				implementation(kotlin("test-js"))
 			}
 		}
 	}

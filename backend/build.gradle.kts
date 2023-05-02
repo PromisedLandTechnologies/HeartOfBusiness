@@ -9,22 +9,24 @@ application {
 }
 
 dependencies {
-	implementation(Deps.Ktor.Server.core)
-	implementation(Deps.Ktor.Server.hostCommon)
-	implementation(Deps.Ktor.Server.statusPages)
-	implementation(Deps.Ktor.Server.netty)
-	implementation(Deps.Ktor.Server.contentNegotiation)
-	implementation(Deps.Ktor.serializationJson)
-	implementation(Deps.Logback.classic)
+	val ktorVersion = "2.0.0"
+	implementation("io.ktor:ktor-server-core-jvm:$ktorVersion")
+	implementation("io.ktor:ktor-server-host-common-jvm:$ktorVersion")
+	implementation("io.ktor:ktor-server-netty-jvm:$ktorVersion")
+	implementation("io.ktor:ktor-server-content-negotiation:$ktorVersion")
 
-	implementation(Deps.Exposed.core)
-	implementation(Deps.Exposed.dao)
-	implementation(Deps.Exposed.jdbc)
-	implementation(Deps.H2.h2)
+	implementation("io.ktor:ktor-serialization-kotlinx-json:$ktorVersion")
+
+	implementation("ch.qos.logback:logback-classic:1.2.3")
+
+	val exposedVersion = "0.41.1"
+	implementation("org.jetbrains.exposed:exposed-core:$exposedVersion")
+	implementation("org.jetbrains.exposed:exposed-dao:$exposedVersion")
+	implementation("org.jetbrains.exposed:exposed-jdbc:$exposedVersion")
+
+	implementation("com.h2database:h2:2.1.214")
 
 	implementation(project(":shared"))
-	testImplementation(Deps.Ktor.Server.tests)
-	testImplementation(Deps.JetBrains.Kotlin.testJunit)
 }
 
 
